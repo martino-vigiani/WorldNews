@@ -3,13 +3,6 @@ import { analyzeArticle } from '@/lib/ai/analyze';
 import { getCached, setCached, createCacheKey } from '@/lib/cache';
 
 export async function POST(request: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json(
-      { error: 'ANTHROPIC_API_KEY is not configured' },
-      { status: 500 }
-    );
-  }
-
   let body: { title?: string; description?: string; url?: string };
   try {
     body = await request.json();
